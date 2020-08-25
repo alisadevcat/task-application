@@ -1,0 +1,19 @@
+{
+    "name": "alis/newproject",
+    "type": "project",
+    "license": "MIT",
+    "description": "alisa/2ndProject",
+    "minimum-stability": "dev",
+    "authors": [
+        {
+            "name": "Alisa Ra",
+            "email": "vindicta90@mail.ru"
+        }
+    ],
+    "require": {},
+    "autoload":{
+        "psr-4":{
+        "BeeJee\\Web\\":"src"
+            }
+    }
+}

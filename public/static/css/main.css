@@ -1,0 +1,23 @@
+.flex-column{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+.container{
+    width:1200px;
+    margin:0 auto;
+}
+.flex-row{
+    display:flex;
+    flex-direction:row;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap:nowrap;
+}
+a.page{
+    margin-bottom:15rem;
+}
+.active{
+    color:white;
+}
