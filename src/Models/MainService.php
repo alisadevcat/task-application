@@ -5,6 +5,8 @@ use BeeJee\Web\Base\DBConnection;
 use BeeJee\Web\Base\Controller\IndexController;
 
 class MainService{
+const TASK_OK ="Задача добавлена";
+const TASK_FAIL="Данные не внесены";
 protected $dbConnection;
 
 public function __construct(){
@@ -31,28 +33,48 @@ public function showPage(){
         return $numPage;
         }
 
-public function showSort($id = FALSE) {
-        //Запрос на выборку все товаров
-        $sql = "SELECT * FROM tasks";
-        
+public function showSort($id, $page) {
+        $sql ="SELECT * FROM tasks ";
+        $limit = 3;
+        $offset = $limit * ($page-1);
         if($id){
-                if($id == 'namea') {
-                $sql .= ' ORDER BY title ASC';
+                if($id == 'nameAsc') {
+                $sql .= "ORDER BY name ASC LIMIT $limit OFFSET $offset";
                 }
-                else if ($id == 'named') {
-                $sql .= ' ORDER BY title DESC';
+                else if ($id == 'nameDesc') {
+                $sql .= "ORDER BY name DESC LIMIT $limit OFFSET $offset";
                 }
-                else if ($id == 'pricea') {
-                $sql .= ' ORDER BY price ASC';
+                else if ($id == 'emailAsc') {
+                $sql .= " ORDER BY email ASC LIMIT $limit OFFSET $offset";
                 }
-                else if ($id == 'priced') {
-                $sql .= ' ORDER BY price DESC';
+                else if ($id == 'emailDesc') {
+                $sql .= "ORDER BY email DESC  LIMIT $limit OFFSET $offset";
                 }
+                else if ($id == 'statusSort') {
+                $sql .= " ORDER BY status ASC  LIMIT $limit OFFSET $offset";
+                        }
         }
         
         $dbConnection = $this->dbConnection->getConnection();
         return $this->dbConnection->queryAll($sql);
-
        }
+
+public function addTask(array $data){
+
+$sql = 'INSERT INTO tasks(name, email, textarea, status)
+VALUES (:task_name, :task_email,:task_text, :task_status)';
+
+$dbConnection = $this->dbConnection->getConnection();
+
+
+$params = [
+        'task_name' => $data['name'],
+        'task_email' => $data['email'],
+        'task_text'=>$data['textarea'],
+        'task_status'=>$data['hero'][0]
+        ];
+
+return $this->dbConnection->executeSql($sql, $params)? self:: TASK_OK : self::TASK_FAIL;
+}
 
 }

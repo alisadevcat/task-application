@@ -1,30 +1,28 @@
-
-<?
+<?php
 
 namespace BeeJee\Web\Controllers;
 use BeeJee\Web\Base\Controller;
 use BeeJee\Web\Models\MainService;
+use BeeJee\Web\Base\Request;
 
 class TasksController extends Controller{
 public $mainservice;
+public $request;
+
 
 public function __construct(){
 $this->mainservice = new Mainservice();
+$this->request = new Request();
 }
 
-public function SortAction($id){
-    // должен отработать по запосу
-    // 'получить страницу с книгой по id' /books/book/1
-    $template = 'template.php';
-    $content = 'main.php';
-    // $book = $this->books_model->getBookById($id);
+public function addAction(){
+    // if ($server['REQUEST_METHOD'] === 'POST'){
+    //     $post = $_POST; 
+$data=$this->request->post();
 
-    // $data = [
-    //     'page_title' => $book['title'],
-    //     'book' => $book,
-    //     'js' => 'books.js'
-    // ];
-    $result =$this->mainservice->showId($id);
-    return json_encode($result, JSON_UNESCAPED_UNICODE);
+$added =$this->mainservice->addTask($data);
+
+echo $added;
 }
-}?>
+
+}

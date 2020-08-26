@@ -53,6 +53,6 @@ class DBConnection
 
     public function executeSql($sql, $params){
         $statement = $this->dbConnection->prepare($sql);
-       return $statement->execute($params);
+        return $statement->execute($params);
     }
 }

@@ -4,6 +4,12 @@ namespace BeeJee\Web\Base;
 
 abstract class Controller
 {
+    protected function ajaxResponse($data){
+        $response = new Response();
+        $response->setBody($data);
+        return $response;
+    }
+    
     protected function renderPage($content, $template, $data=[]){
         // $content имя файла с основным содержимым страницы
         // $template имя файла - шаблона, куда будет подключаться
