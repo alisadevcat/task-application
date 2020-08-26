@@ -42,37 +42,6 @@ function responseHandler(answer){
     if(answer === AUTH_PWD_ERROR){
         auth_password.innerHTML = AUTH_PWD_ERROR;
     }
-    }
 
-let reg_form = document.forms['regForm'];
-let reg_result = document.querySelector(".reg_result");
-let span_email=  document.querySelector(".span_email");
-
-reg_form.addEventListener('submit', async(event)=>{
-// async позволяет использовать await
-    event.preventDefault();
-    
-    try {
-        const response = await fetch("/registration", {//обработчик action
-            method: 'POST', 
-            body: new FormData(reg_form)
-        });
-        let answer = await response.text();
-        console.log("ответ сервера " + answer);
-        regResponseHandler(answer);
-    } catch (error) {
-        console.log("ошибка", error);
-    }
-});
-
-function regResponseHandler(answer){
-    if(answer === USER_EXISTS){
-    span_email.innerHTML= USER_EXISTS;
-    }if (answer === INSERT_FAIL){
-    reg_result.innerHTML= INSERT_FAIL;
-    }if(answer === REG_SUCCESS){
-    reg_result.innerHTML= REG_SUCCESS;
-    window.location.replace('/');
-    }
 
     } 

@@ -4,30 +4,48 @@
 <div class="sort">
 <h3>Сортировка по</h3><strong>Имени</strong>
 <a href="/sort/name/nameAsc" data-id ="nameAsc"class ="button">А до Я</a>
+<span>/</span>
 <a href ="/sort/name/nameDesc"data-id="nameDesc"class ="button">От Я до А</a>
 <strong>Email </strong>
-<a href="/sort/email/emailAsc" data-id="emailAsc"class ="button">А до Я</a>
+<a href="/sort/email/emailAsc" data-id="emailAsc"class ="button">А до Я/</a>
+<span>/</span>
 <a href="/sort/email/emailDesc" data-id="emailDesc"class ="button">От Я до А</a>
 <strong>Статус</strong>
-<a href="/sort/status/statusSort" data-id="statusAsc" class ="button"> А до Я</a>
+<a href="/sort/status/done" data-id="statusAsc" class ="button">ВЫПОЛНЕНА</a>
+<span>/</span>
+<a href="/sort/status/undone" data-id="statusAsc" class ="button">НЕ ВЫПОЛНЕНА</a>
 </div>
-<? foreach ($alltasks as $task):?>
-<div class="tasks flex-row">
-<p><?echo $task['id']?></p>
-    <p><?echo $task['name']?></p>
-    <p><?echo $task['email']?></p>
-    <p><?echo $task['textarea']?></p>
-    <p><?echo $task['status']?></p>
 
-    <? 
-    if ($_SESSION['admin']){
-        echo "<a href='/tasks/add'> Изменить задачу </a>";
-    }
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Имя</th>
+      <th scope="col">Фамилия</th>
+      <th scope="col">Username</th>
+    </tr>
+  </thead>
+  <tbody><? foreach ($alltasks as $task):?>
+    <tr>
+    
+      <th scope="row"><?echo $task['id']?></th>
+      <td><?echo $task['name']?></td>
+      <td><?echo $task['email']?></td>
+      <td><?echo $task['textarea']?></td>
+      <td><?echo $task['status']?></td>
+    </tr>
+   <?endforeach?>
+  </tbody>
+</table>
 
-    ?>
 
-</div>
-<?endforeach;?>
+
+
+
+<!-- if($_SESSION['user_role'] =="admin"){
+        echo "<a href='/tasks/edit/$task['name']> Изменить задачу </a>";
+        echo "<a href='/tasks/save'> Сохранить задачу </a>";
+    } -->
 
 <?
 for($i = 1; $i<=$number; $i++){

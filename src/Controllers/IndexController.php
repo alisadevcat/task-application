@@ -17,7 +17,6 @@ $page = isset($_GET['page'])?$_GET['page']:1;
 $alltasks =$this->mainservice->showAll($page);
 $number=$this->mainservice->showPage();
 
-
 $template ='template.php';
 $content='main.php';
 $data = [

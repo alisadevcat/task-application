@@ -37,6 +37,8 @@ public function showSort($id, $page) {
         $sql ="SELECT * FROM tasks ";
         $limit = 3;
         $offset = $limit * ($page-1);
+        $done= "ВЫПОЛНЕНА";
+        $undone="НЕ ВЫПОЛНЕНА";
         if($id){
                 if($id == 'nameAsc') {
                 $sql .= "ORDER BY name ASC LIMIT $limit OFFSET $offset";
@@ -50,9 +52,12 @@ public function showSort($id, $page) {
                 else if ($id == 'emailDesc') {
                 $sql .= "ORDER BY email DESC  LIMIT $limit OFFSET $offset";
                 }
-                else if ($id == 'statusSort') {
-                $sql .= " ORDER BY status ASC  LIMIT $limit OFFSET $offset";
-                        }
+                else if ($id == 'done') {
+                $sql .= "WHERE status ='$done' LIMIT $limit OFFSET $offset";
+                }
+                else if ($id == 'undone') {
+                $sql .= "WHERE status ='$undone' LIMIT $limit OFFSET $offset";
+                }
         }
         
         $dbConnection = $this->dbConnection->getConnection();

@@ -24,5 +24,21 @@ $added =$this->mainservice->addTask($data);
 
 echo $added;
 }
+public function editAction($id){
 
+$data=$this->request->post();
+
+$added =$this->mainservice->addTask($data);
+
+echo $added;
+}
+
+public function saveAction($id){
+
+    $data=$this->request->post();
+    
+    $added =$this->mainservice->addTask($data);
+    
+    echo $added;
+    }
 }

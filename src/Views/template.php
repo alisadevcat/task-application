@@ -6,15 +6,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="/static/css/main.css">
     <title><?echo $page_title?></title>
 </head>
 <header>
-    <h2>TO DOTASK APPLICATION </h2>
+<h2>TO DOTASK APPLICATION </h2>
+
 <div class="form_window none flex-column">
 <h3>Авторизация</h3>
 <form name="authForm" action="/authorisation" method="POST">
-<input required type="email" name="email"placeholder ="Ваш email">
+<input required type="text" name="login"placeholder ="Ваш логин">
 <span class="auth_email"></span>
 <input required type="password"name ="password" placeholder ="Ваш пароль">
 <span class="auth_password"></span>
@@ -24,18 +26,6 @@
 </form>
 </div>
 
-<!-- <div class="form_window_reg none flex-column">
-<h3>Регистрация</h3>
-<form name="regForm" action="/registration" method="POST">
-<input required type="email" name="email"placeholder ="Ваш email">
-<span class="span_email"></span>
-<input required type="password"name ="password" placeholder ="Ваш пароль">
-<input required type="password"name ="re_password" placeholder ="Повторите пароль">
-<span class="reg_result"></span>
-<input type="submit" value="Войти" class="button">
-<button class="close_modal">x</button>
-</form>
-</div> -->
 
     <div class="flex-auth container">
     <a href= "/autorisation/" class ="auth">Войти</a>
