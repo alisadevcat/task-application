@@ -1,8 +1,15 @@
-.flex-column{
+.create_form{
     display:flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: space-around;
     align-items: center;
+    padding:15px;
+    border:1px solid black;
+    margin-bottom: 15px;
+}
+.flex-column input{
+padding:5px;
+margin-bottom:10px;
 }
 .page{
     margin:15rem 0;
@@ -20,14 +27,17 @@
     justify-content: space-between;
     align-items: left;
     flex-wrap:nowrap;
+    margin-right:15px;
 }
 .flex-auth{
     display:flex;
-    flex-direction:row-reverse;
-    justify-content:space-between;
-    flex-wrap:nowrap;
-    align-self: flex-end
+    flex-direction:row;
+    justify-content:flex-end;
 }
+.flex-auth a{
+margin-right:20px;
+}
+
 .active{
     color:white;
 }
@@ -38,9 +48,10 @@ position:absolute;
 top:40%;
 left:40%;
 border:1px solid black;
+border-radius:10px;
 background-color: white;
-padding:20px;
-width:13%;
+padding:20px 10px;
+width:15%;
 }
 
 div.form_window input,
@@ -57,4 +68,7 @@ div.form_window_reg input
     right:5px;
     top:0px;
     cursor: pointer;
+}
+.status{
+    height:20px;
 }

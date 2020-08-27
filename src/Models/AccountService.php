@@ -2,15 +2,15 @@
 
 namespace BeeJee\Web\Models;
 use BeeJee\Web\Base\DBConnection;
-use BeeJee\Web\Base\Controller\IndexController;
+
 
 class AccountService{
 
 const USER_EXISTS ="Пользователь уже существует";
 const INSERT_FAIL="Данные не внесены";
 const REG_SUCCESS="Регистрация успешна";
-const EMAIL_ERROR="Такой пользователь уже есть";
-const AUTH_PWD_ERROR='Неверный пароль';
+const NAME_ERROR="Такоuго имени нет";
+const AUTH_PWD_ERROR ='Неверный пароль';
 const AUTH_SUCCESS ='Авторизация успешна';
 
 protected $dbConnection;
@@ -19,37 +19,47 @@ public function __construct(){
 $this->dbConnection= DBConnection::getInstance();
 }
 
-public function regUser(array $reg_data){
-    
-    $pwd = $reg_data['password'];
-    $re_pwd = $reg_data['re_password'];
-    $email = $reg_data['email'];
+public function regUser($reg_data){
+
+    //если пустой массив и нет ошибок, объявляем переменные полей
+     $name = $reg_data['login'];
+     $pwd = $reg_data['password'];
+
+     if (($pwd == 123) && ($name =="admin")){
+        $role == true;
+        $_SESSION['admin'] = true; 
+}
+  
 
     //проверка на уже имеющийся email в бд
-    if ($this->getUser($email)) return self::USER_EXISTS;
+    if ($this->getUser($name)) return self::USER_EXISTS;
+
     //шифрование пароля
     $pwd = password_hash($pwd, PASSWORD_DEFAULT);
-    //запись данных в бд user_info
-    $sql ="INSERT INTO users(id,  email, password)
-    VALUES(:id, :user_email, :user_pwd );";
+    //запись данных в бд 
+    $sql ="INSERT INTO users(id, login, password, admin)
+    VALUES(:id, :user_name, :user_pwd, :role);";
     $params=[
         'id'=>$this->dbConnection->getConnection()->lastInsertId(),
+        'user_name'=>$name,
         'user_pwd'=>$pwd,
-        'user_email'=>$email
+        'role'=>$role
     ];
     return $this->dbConnection->executeSql($sql, $params)? self:: REG_SUCCESS : self::INSERT_FAIL;  
 }
 
-public function authUser(array $auth_data){
+
+public function authUser($auth_data){
    
     $password = $auth_data['password'];
-    $email = $auth_data['email'];
+    $name = $auth_data['login'];
     
     //обращаемся к бд, ищем соотвествия, если да, возвращаем ответ
 
-        $user =$this->getUser($email);
-        if(!$user)return self::EMAIL_ERROR;
+        $user =$this->getUser($name);
+        if(!$user)return self::NAME_ERROR;
 
+        
         if(!password_verify($password, $user['password'])){
             return self::AUTH_PWD_ERROR;
         }
@@ -57,10 +67,10 @@ public function authUser(array $auth_data){
 }
 
  //получаем email из бд
- private function getUser($email){
-    $sql = 'select * from users where email = :email';
+ private function getUser($name){
+    $sql = 'select * from users where login = :name';
     $dbConnection = $this->dbConnection->getConnection();
-    $user = $this->dbConnection->execute($sql, ['email' => $email], false);
+    $user = $this->dbConnection->execute($sql, ['name' => $name], false);
     return $user;
 }
 

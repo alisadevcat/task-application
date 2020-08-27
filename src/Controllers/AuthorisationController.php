@@ -3,25 +3,23 @@
 namespace BeeJee\Web\Controllers;
 use BeeJee\Web\Base\Controller;
 use BeeJee\Web\Models\AccountService;
+use BeeJee\Web\Base\Request;
 
-class AutorisationController extends Controller{
+
+class AuthorisationController extends Controller{
 public $accountService;
-
+public $request;
 
 public function __construct(){
-$this->mainservice = new AccountService();
-
+$this->accountService = new AccountService();
+$this->request = new Request();
 }
 
-public function IndexAction(Request $request){
-
-if($_SERVER['REQUEST_METHOD'] === 'POST'){
-$auth_data = $_POST;
-}
-
+public function indexAction(){
+$auth_data = $this->request->post();
 $result =$this->accountService->authUser($auth_data);
 if ($result === AccountService::AUTH_SUCCESS){
-    $_SESSION['email'] = $auth_data['email'];
+    $_SESSION['admin'] = true;
 }
 echo $result;
 

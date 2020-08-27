@@ -59,7 +59,6 @@ public function showSort($id, $page) {
                 $sql .= "WHERE status ='$undone' LIMIT $limit OFFSET $offset";
                 }
         }
-        
         $dbConnection = $this->dbConnection->getConnection();
         return $this->dbConnection->queryAll($sql);
        }

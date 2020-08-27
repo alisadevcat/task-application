@@ -6,17 +6,17 @@ CREATE TABLE IF NOT EXISTS `tasks`(
 `name` VARCHAR(45),
 `email` NVARCHAR(45) NOT NULL,
 `textarea` LONGTEXT NOT NULL,
-`status` ENUM ('ВЫПОЛНЕНА', 'НЕ ВЫПОЛНЕНА') NOT NULL default 'НЕ ВЫПОЛНЕНА',
+`status` ENUM ('Выполнена', 'Не Выполнена') NOT NULL default 'Не Выполнена',
 `created at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 )ENGINE=InnoDB DEFAULT CHARSET = utf8mb4;
 
 DROP TABLE tasks;
 
 INSERT INTO `tasks`( name, email, textarea, status)
-VALUES ('Анна','vind@mail.ru','	Посмотреть в CRM статистику по сделкам менеджеров за неделю','ВЫПОЛНЕНА');
+VALUES ('Анна','vind@mail.ru','	Посмотреть в CRM статистику по сделкам менеджеров за неделю','Выполнена');
 
 INSERT INTO `tasks`( name, email, textarea,status)
-VALUES ('Михаил','mikhail@mail.ru','Провести собеседование с кандидатом на должность менеджера','ВЫПОЛНЕНА');
+VALUES ('Михаил','mikhail@mail.ru','Провести собеседование с кандидатом на должность менеджера','Выполнена');
 INSERT INTO `tasks`( name, email, textarea)
 VALUES ('Иван','ivan@mail.ru','Запросить в бухгалтерии данные по поступившим оплатам');
 INSERT INTO `tasks`( name, email, textarea)
@@ -24,9 +24,12 @@ VALUES ('Нина','nind@mail.ru','	Прослушать запись звонк
 
 CREATE TABLE IF NOT EXISTS `users`(
 `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-`email` NVARCHAR(45) NOT NULL,
+`login` NVARCHAR(45) NOT NULL,
 `password` NVARCHAR(255) NOT NULL,
-`user_role`VARCHAR(45) default 'user',
+`admin` ENUM ('true', 'false') default 'false',
 `created at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 )ENGINE=InnoDB DEFAULT CHARSET = utf8mb4;
 
+DROP TABLE users;
+
+SELECT * FROM users;

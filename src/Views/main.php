@@ -21,8 +21,13 @@
     <tr>
       <th scope="col">#</th>
       <th scope="col">Имя</th>
-      <th scope="col">Фамилия</th>
-      <th scope="col">Username</th>
+      <th scope="col">Email</th>
+      <th scope="col">Задача</th>
+      <th scope="col">Статус</th>
+      <? if($_SESSION['admin'] === true)
+    echo "<th>Изменить</th>";
+    echo "<th>Сохранить</th>";
+    ?>
     </tr>
   </thead>
   <tbody><? foreach ($alltasks as $task):?>
@@ -32,15 +37,15 @@
       <td><?echo $task['name']?></td>
       <td><?echo $task['email']?></td>
       <td><?echo $task['textarea']?></td>
-      <td><?echo $task['status']?></td>
+      <td class="task__item__status"><?echo $task['status']?></td>
+      <? if($_SESSION['admin'] === true)
+    echo "<td><a href='/tasks/edit'>Изменить задачу</a></td>";
+    echo "<td><a href='/tasks/save'>Cохранить задачу</a></td>";
+    ?>
     </tr>
    <?endforeach?>
   </tbody>
 </table>
-
-
-
-
 
 <!-- if($_SESSION['user_role'] =="admin"){
         echo "<a href='/tasks/edit/$task['name']> Изменить задачу </a>";
@@ -53,15 +58,22 @@ for($i = 1; $i<=$number; $i++){
 }
 ?>
 
-<div class="flex-column">
+<div class="create_form">
 <form name="taskForm" action="/tasks/add" method="POST">
+<table>
+    <tr>
+        <td>
 <input type="text" name="name" placeholder ="Вашe имя">
 <input type="email" name="email" placeholder ="Ваш email">
 <input type="textarea"name ="textarea" placeholder ="Текст задачи">
 <select size="3" multiple name="hero[]">
-    <option disabled>Выберите статус</option>
+    <option disabled class="status">Выберите статус</option>
     <option value="DONE">DONE</option>
     <option value="UNDONE">UNDONE</option>
+    </td>
+    </tr>
+</table>
+
 </form>
 <input type ="submit" value="Создать задачу">
 <span id="for_result"></span>

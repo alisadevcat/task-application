@@ -15,8 +15,8 @@
 
 <div class="form_window none flex-column">
 <h3>Авторизация</h3>
-<form name="authForm" action="/authorisation" method="POST">
-<input required type="text" name="login"placeholder ="Ваш логин">
+<form name="authForm" action="/authorisation/" method="POST">
+<input required type="text" name="login" placeholder ="Ваш логин">
 <span class="auth_email"></span>
 <input required type="password"name ="password" placeholder ="Ваш пароль">
 <span class="auth_password"></span>
@@ -25,16 +25,27 @@
 <button class="close_modal">x</button>
 </form>
 </div>
-
+<div class="form_window_reg none flex-column">
+<h3>Регистрация</h3>
+<form name="regForm" action="/registration/" method="POST">
+<input required type="text" name="login" placeholder ="Ваш логин">
+<span class="reg_name"></span>
+<input required type="password"name ="password" placeholder ="Ваш пароль">
+<span class="reg_password"></span>
+<input required type="submit" value="Войти"class="button">
+<span class="reg_result"></span>
+<button class="close_modal_reg">x</button>
+</form>
+</div>
 
     <div class="flex-auth container">
     <a href= "/autorisation/" class ="auth">Войти</a>
-    <a href="/registration/" class="reg_a">Регистрация</a>
-
-    <? if ($_SESSION['user_role'] == 'admin')
+    <? if($_SESSION['admin'] === true)
     echo "<a href='/authorisation/logout/'>Выйти</a>"
     ?>
+    <a href="/registration/" class="reg_a">Регистрация</a>
     </div>
+
 </header>
 <img src="/static/img/todo.jpg" class="container">
 <body class="container">
