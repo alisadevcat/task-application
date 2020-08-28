@@ -1,19 +1,22 @@
 
 <div class="container" id="fon">
+
 <h2>Список задач</h2>
+
 <div class="sort">
-<h3>Сортировка по</h3><strong>Имени</strong>
-<a href="/sort/name/nameAsc" data-id ="nameAsc"class ="button">А до Я</a>
-<span>/</span>
-<a href ="/sort/name/nameDesc"data-id="nameDesc"class ="button">От Я до А</a>
-<strong>Email </strong>
-<a href="/sort/email/emailAsc" data-id="emailAsc"class ="button">А до Я/</a>
-<span>/</span>
-<a href="/sort/email/emailDesc" data-id="emailDesc"class ="button">От Я до А</a>
-<strong>Статус</strong>
-<a href="/sort/status/done" data-id="statusAsc" class ="button">ВЫПОЛНЕНА</a>
-<span>/</span>
-<a href="/sort/status/undone" data-id="statusAsc" class ="button">НЕ ВЫПОЛНЕНА</a>
+  <h5>Сортировка по</h5>
+  <strong>Имени</strong>
+  <a href="/sort/name/nameAsc" data-id ="nameAsc"class ="button">А до Я</a>
+  <span>/</span>
+  <a href ="/sort/name/nameDesc"data-id="nameDesc"class ="button">От Я до А</a>
+  <strong>Email</strong>
+  <a href="/sort/email/emailAsc" data-id="emailAsc"class ="button">А до Я/</a>
+  <span>/</span>
+  <a href="/sort/email/emailDesc" data-id="emailDesc"class ="button">От Я до А</a>
+  <strong>Статусу</strong>
+  <a href="/sort/status/done" data-id="statusAsc" class ="button">ВЫПОЛНЕНА</a>
+  <span>/</span>
+  <a href="/sort/status/undone" data-id="statusAsc" class ="button">НЕ ВЫПОЛНЕНА</a>
 </div>
 
 <table class="table">
@@ -26,60 +29,63 @@
       <th scope="col">Статус</th>
       <? if($_SESSION['admin'] === true)
     echo "<th>Изменить</th>";
-    echo "<th>Сохранить</th>";
     ?>
     </tr>
   </thead>
   <tbody><? foreach ($alltasks as $task):?>
     <tr>
-    
       <th scope="row"><?echo $task['id']?></th>
       <td><?echo $task['name']?></td>
       <td><?echo $task['email']?></td>
       <td><?echo $task['textarea']?></td>
       <td class="task__item__status"><?echo $task['status']?></td>
       <? if($_SESSION['admin'] === true)
-    echo "<td><a href='/tasks/edit'>Изменить задачу</a></td>";
-    echo "<td><a href='/tasks/save'>Cохранить задачу</a></td>";
+    echo "<td><a href=\"/tasks/edit/{$task['id']}\ class=\"change_task\">Изменить задачу</a></td>";
     ?>
     </tr>
    <?endforeach?>
   </tbody>
 </table>
 
-<!-- if($_SESSION['user_role'] =="admin"){
-        echo "<a href='/tasks/edit/$task['name']> Изменить задачу </a>";
-        echo "<a href='/tasks/save'> Сохранить задачу </a>";
-    } -->
-
+<div class="page">
 <?
 for($i = 1; $i<=$number; $i++){
     echo "<a href='/page/show/$i' class='page'> $i </a>";
 }
 ?>
+</div>
 
 <div class="create_form">
-<form name="taskForm" action="/tasks/add" method="POST">
-<table>
-    <tr>
-        <td>
+<h3>Добавить задачу</h3>
+<form name="taskForm" method="POST"class="flex-column">
 <input type="text" name="name" placeholder ="Вашe имя">
 <input type="email" name="email" placeholder ="Ваш email">
-<input type="textarea"name ="textarea" placeholder ="Текст задачи">
-<select size="3" multiple name="hero[]">
-    <option disabled class="status">Выберите статус</option>
-    <option value="DONE">DONE</option>
-    <option value="UNDONE">UNDONE</option>
-    </td>
-    </tr>
-</table>
+<input type="textarea" name ="textarea" placeholder ="Текст задачи">
+<select size="3" multiple name="status[]">
+    <option disabled class="status_choice">Выберите статус</option>
+    <option value="Выполнена">Выполнена</option>
+    <option value="Не выполнена">Не выполнена</option>
+</select>
 
+<input type ="submit" value="Сохранить задачу">
+<span id="for_result"></span>
 </form>
-<input type ="submit" value="Создать задачу">
+</div>
+
+<div class="edit_form none">
+<form name="taskForm" action="/tasks/form" method="POST">
+      <?foreach ($tasks as $task):?>
+    <input type="text" name="name" placeholder ="Вашe имя" value="<?echo $task['name']?>">
+     <input type="email" name="email" placeholder ="Ваш email"  value="<?echo $task['email'] ?>">
+      <input type="textarea"name ="textarea" placeholder ="Текст задачи" value="<?echo $task['textarea'] ?>">
+   <select size="3" multiple name="hero[]">
+  <? echo "<option value={$task['status']}> {$task['status']} </option>"?>;
+</select>;
+    <?endforeach?>
+</form>
+<input type ="submit" value="Сохранить задачу">
 <span id="for_result"></span>
 </div>
-
 </div>
-<!-- <script src="/static/js/sorting.js"></script> -->
-<!-- <script src="/static/js/pagination.js"></script> -->
-<script src="/static/js/task_ajax.js"></script>
+
+

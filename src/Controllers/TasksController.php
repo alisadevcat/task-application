@@ -22,22 +22,32 @@ $data=$this->request->post();
 
 $added =$this->mainservice->addTask($data);
 
-echo $added;
+echo $added ;
 }
+
+
 public function editAction($id){
 
 $data=$this->request->post();
 
-$added =$this->mainservice->addTask($data);
+$tasks =$this->mainservice->getTasksById($id);
+var_dump($task);
+$template ='template.php';
+$content='update.php';
+$data = [
+    'page_title'=>"Изменение задачи",
+    'main'=>'main',
+    'tasks'=>$tasks
+];
 
-echo $added;
+echo $this->renderPage($content, $template, $data);
 }
 
 public function saveAction($id){
 
     $data=$this->request->post();
     
-    $added =$this->mainservice->addTask($data);
+    $added =$this->mainservice->saveTask($data);
     
     echo $added;
     }

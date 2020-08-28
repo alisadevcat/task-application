@@ -1,18 +1,35 @@
 .create_form{
-    display:flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    padding:15px;
+    width:50%;
     border:1px solid black;
+    margin:20px 0;
+}
+.create_form h3{
+    text-align: center;
+}
+.create_form input,
+.create_form select{
+    /* padding:10px; */
+    margin-left:1rem;
+}
+.flex-column input,
+.flex-column select{
+width:60%;
+margin:10px auto;
+}
+.flex-column{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
     margin-bottom: 15px;
 }
-.flex-column input{
-padding:5px;
-margin-bottom:10px;
-}
 .page{
-    margin:15rem 0;
+    font-size:15px;
+    padding-left:20px;
+    margin:2rem 0;
+}
+#for_result{
+text-align:center;
+font-size:15px;
 }
 .none{
     display:none;
@@ -58,7 +75,7 @@ div.form_window input,
 div.form_window_reg input
 {
     padding:10px;
-    margin-top:1rem;
+    margin:1rem;
 
 }
 .close-modal{
@@ -68,7 +85,4 @@ div.form_window_reg input
     right:5px;
     top:0px;
     cursor: pointer;
-}
-.status{
-    height:20px;
 }

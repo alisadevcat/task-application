@@ -54,6 +54,7 @@
 
 <script src="/static/js/general.js"></script>
 <script src="/static/js/auth.js"></script>
+<script src="/static/js/task_ajax.js"></script>
 </body>
 
 </html>

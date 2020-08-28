@@ -5,6 +5,7 @@ use BeeJee\Web\Base\DBConnection;
 use BeeJee\Web\Base\Controller\IndexController;
 
 class MainService{
+
 const TASK_OK ="Задача добавлена";
 const TASK_FAIL="Данные не внесены";
 protected $dbConnection;
@@ -63,10 +64,34 @@ public function showSort($id, $page) {
         return $this->dbConnection->queryAll($sql);
        }
 
-public function addTask(array $data){
+       public function addTask($data){
 
-$sql = 'INSERT INTO tasks(name, email, textarea, status)
-VALUES (:task_name, :task_email,:task_text, :task_status)';
+        $sql = 'INSERT INTO tasks(name, email, textarea, status)
+        VALUES (:task_name, :task_email,:task_text, :task_status)';
+        
+        $params = [
+                'task_name' => $data['name'],
+                'task_email' => $data['email'],
+                'task_text'=>$data['textarea'],
+                'task_status'=>$data['status'][0]
+                ];
+        
+        $dbConnection = $this->dbConnection->getConnection();
+        return $this->dbConnection->executeSql($sql, $params)? self::TASK_OK : self::TASK_FAIL;
+        }  
+        
+public function returnTasks($id){
+$task = $this->getTasksById($id);
+// $name=$array['name'];
+// $email =$array['email'];
+// $text =$array['textarea'];
+// $status=$array['status'];
+
+}
+public function editTask($id){
+
+
+$sql = 'UPDATE tasks SET name = :task_name, email = :text_email,textarea= :task_text, status= :task_status;';
 
 $dbConnection = $this->dbConnection->getConnection();
 
@@ -81,4 +106,10 @@ $params = [
 return $this->dbConnection->executeSql($sql, $params)? self:: TASK_OK : self::TASK_FAIL;
 }
 
+public function getTasksById($id){
+$sql ='SELECT * FROM tasks where id =:id;';
+$params=['id'=> $id];
+$dbConnection = $this->dbConnection->getConnection();
+return $this->dbConnection->execute($sql, $params, true);
+}
 }

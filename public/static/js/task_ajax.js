@@ -21,11 +21,17 @@ task_form.addEventListener('submit', async(event)=>{
     });
 
 function responseHandler(answer){
-let result = document.getElementById("for_result");
-
+let result = document.querySelector("#for_result");
+console.log(result);
     if (answer == TASK_OK){
         result.innerHTML = TASK_OK;
     }else{
     result.innerHTML = TASK_FAIL};
     
     };
+
+let edit_form = document.querySelector('.edit_form');
+console.log(edit_form);
+edit_form.onclick = function(e){
+this.classList.add('shown');
+}
