@@ -8,6 +8,10 @@ class MainService{
 
 const TASK_OK ="Задача добавлена";
 const TASK_FAIL="Данные не внесены";
+const TASK_EDITED ="Задача добавлена";
+
+const TASK_SAVED ="Задача сохранена";
+const TASK_UNSAVED ="Задача не сохранена";
 protected $dbConnection;
 
 public function __construct(){
@@ -77,39 +81,50 @@ public function showSort($id, $page) {
                 ];
         
         $dbConnection = $this->dbConnection->getConnection();
-        return $this->dbConnection->executeSql($sql, $params)? self::TASK_OK : self::TASK_FAIL;
+        return $this->dbConnection->executeSql($sql, $params);
         }  
         
-public function returnTasks($id){
-$task = $this->getTasksById($id);
-// $name=$array['name'];
-// $email =$array['email'];
-// $text =$array['textarea'];
-// $status=$array['status'];
+// public function returnTasks($id){
+// $task = $this->getTasksById($id);
+// // $name=$array['name'];
+// // $email =$array['email'];
+// // $text =$array['textarea'];
+// // $status=$array['status'];
 
-}
-public function editTask($id){
+// }
+// public function editTask($id){
+// $sql = 'UPDATE tasks SET name = :task_name, email = :text_email,textarea= :task_text, status= :task_status;';
+// $dbConnection = $this->dbConnection->getConnection();
+
+// $params = [
+//         'task_name' => $data['name'],
+//         'task_email' => $data['email'],
+//         'task_text'=>$data['textarea'],
+//         'task_status'=>$data['hero'][0]
+//         ];
+
+// return $this->dbConnection->executeSql($sql, $params)? self:: TASK_OK : self::TASK_FAIL;
+// }
 
 
-$sql = 'UPDATE tasks SET name = :task_name, email = :text_email,textarea= :task_text, status= :task_status;';
+public function saveTask($saved_data, $id){
+$sql = "UPDATE tasks SET name = :name, email = :email, textarea = :textarea , status= :status where id = :id";
+$params =[
+        'name' => trim($saved_data['name']),
+        'email'=> trim( $saved_data['email']),
+        'textarea'=> trim($saved_data['textarea']),
+        'status' => trim($saved_data['status'][0]),
+        'id'=>$id
+];
 
-$dbConnection = $this->dbConnection->getConnection();
+        $dbConnection = $this->dbConnection->getConnection();
+        return $this->dbConnection->executeSql($sql, $params, true)? self::TASK_SAVED : self::TASK_UNSAVED;
+        }
 
-
-$params = [
-        'task_name' => $data['name'],
-        'task_email' => $data['email'],
-        'task_text'=>$data['textarea'],
-        'task_status'=>$data['hero'][0]
-        ];
-
-return $this->dbConnection->executeSql($sql, $params)? self:: TASK_OK : self::TASK_FAIL;
-}
-
-public function getTasksById($id){
-$sql ='SELECT * FROM tasks where id =:id;';
-$params=['id'=> $id];
-$dbConnection = $this->dbConnection->getConnection();
-return $this->dbConnection->execute($sql, $params, true);
-}
+        public function getTasksById($id){
+        $sql ='SELECT * FROM tasks where id =:id;';
+        $params=['id'=> $id];
+        $dbConnection = $this->dbConnection->getConnection();
+        return $this->dbConnection->execute($sql, $params, true);
+        }
 }

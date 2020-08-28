@@ -1,0 +1,17 @@
+.img_task{
+    position:relative;
+}
+div.edit_form{
+    position:fixed;
+    top:40%;
+    left:40%;
+    background-color:pink;
+    border:1px solid black;
+}
+.flex-column{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: 15px;
+    align-items:center;
+}

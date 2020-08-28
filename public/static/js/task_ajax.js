@@ -30,8 +30,3 @@ console.log(result);
     
     };
 
-let edit_form = document.querySelector('.edit_form');
-console.log(edit_form);
-edit_form.onclick = function(e){
-this.classList.add('shown');
-}

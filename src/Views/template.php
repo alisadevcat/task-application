@@ -1,6 +1,3 @@
-<!-- Стартовая страница - список задач с возможностью сортировки по имени пользователя, email и статусу.
-- Вывод задач нужно сделать страницами по 3 штуки (с пагинацией).
-- Видеть список задач и создавать новые может любой посетитель без авторизации. -->
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -10,51 +7,53 @@
     <link rel="stylesheet" href="/static/css/main.css">
     <title><?echo $page_title?></title>
 </head>
-<header>
-<h2>TO DOTASK APPLICATION </h2>
+<header class="container">
 
 <div class="form_window none flex-column">
-<h3>Авторизация</h3>
-<form name="authForm" action="/authorisation/" method="POST">
-<input required type="text" name="login" placeholder ="Ваш логин">
-<span class="auth_email"></span>
-<input required type="password"name ="password" placeholder ="Ваш пароль">
-<span class="auth_password"></span>
-<input required type="submit" value="Войти"class="button">
-<span class="auth_result"></span>
-<button class="close_modal">x</button>
-</form>
-</div>
-<div class="form_window_reg none flex-column">
-<h3>Регистрация</h3>
-<form name="regForm" action="/registration/" method="POST">
-<input required type="text" name="login" placeholder ="Ваш логин">
-<span class="reg_name"></span>
-<input required type="password"name ="password" placeholder ="Ваш пароль">
-<span class="reg_password"></span>
-<input required type="submit" value="Войти"class="button">
-<span class="reg_result"></span>
-<button class="close_modal_reg">x</button>
-</form>
+    <h4>Авторизация</h4>
+    <form name="authForm" action="/authorisation/" method="POST">
+        <button class="close_modal">x</button>
+        <input required type="text" name="login" placeholder ="Ваш логин">
+        <span class="auth_email"></span>
+        <input required type="password"name ="password" placeholder ="Ваш пароль">
+        <span class="auth_password"></span>
+        <input required type="submit" value="Войти"class="button">
+        <span class="auth_result"></span>
+    </form>
 </div>
 
-    <div class="flex-auth container">
+<div class="form_window_reg none flex-column">
+    <h4>Регистрация</h4>
+    <form name="regForm" action="/registration/" method="POST">
+        <button class="close_modal_reg">x</button>
+        <input required type="text" name="login" placeholder ="Ваш логин">
+        <span class="reg_name"></span>
+        <input required type="password"name ="password" placeholder ="Ваш пароль">
+        <span class="reg_password"></span>
+        <input required type="submit" value="Войти"class="button">
+        <span class="reg_result"></span>
+    </form>
+</div>
+<div class="flex-row">
+    <h5 class="block">TASK APPLICATION </h5>
+    <div class="flex-auth ">
     <a href= "/autorisation/" class ="auth">Войти</a>
     <? if($_SESSION['admin'] === true)
     echo "<a href='/authorisation/logout/'>Выйти</a>"
     ?>
     <a href="/registration/" class="reg_a">Регистрация</a>
     </div>
-
+</div>
 </header>
-<img src="/static/img/todo.jpg" class="container">
 <body class="container">
+
+<img src="/static/img/todo.jpg" class="container img_task">
     
 <?include_once $content ?>
 
 <script src="/static/js/general.js"></script>
 <script src="/static/js/auth.js"></script>
-<script src="/static/js/task_ajax.js"></script>
+
 </body>
 
 </html>

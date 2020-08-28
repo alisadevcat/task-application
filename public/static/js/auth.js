@@ -1,13 +1,16 @@
 const USER_EXISTS ="Пользователь уже существует";
 const INSERT_FAIL="Данные не внесены";
 const REG_SUCCESS="Регистрация успешна";
+
 const NAME_ERROR="Такое имя уже есть";
 const AUTH_PWD_ERROR='Неверный пароль';
 const AUTH_SUCCESS ='Авторизация успешна';
 
 let auth_form = document.forms.authForm;
-let auth_password = auth_form.elements.password;
-let auth_email= auth_form.elements.email;
+auth_email=document.querySelector(".auth_email");
+auth_password=document.querySelector(".auth_password");
+
+auth_result=document.querySelector(".auth_result");
 
 console.log(auth_form);
 
@@ -21,20 +24,19 @@ auth_form.addEventListener('submit', async(event)=>{
         });
         let answer = await response.text();
         console.log("ответ сервера " + answer);
+        console.log(auth_result);
         responseHandler(answer);
     }catch (error) {
         console.log("ошибка", error);
     }
 });
 
-auth_result=document.querySelector(".auth_result");
-auth_email=document.querySelector(".auth_email");
-auth_password=document.querySelector(".auth_password");
+
 
 function responseHandler(answer){
     if(answer === AUTH_SUCCESS){
       auth_result.innerHTML = AUTH_SUCCESS;
-      window.location.replace('/');
+      setTimeout("window.location.replace('/')" , 3000); 
     }
     if(answer === NAME_ERROR){
         auth_email.innerHTML= NAME_ERROR;

@@ -31,12 +31,12 @@ public function editAction($id){
 $data=$this->request->post();
 
 $tasks =$this->mainservice->getTasksById($id);
-var_dump($task);
+
 $template ='template.php';
 $content='update.php';
 $data = [
     'page_title'=>"Изменение задачи",
-    'main'=>'main',
+    'main'=>'update',
     'tasks'=>$tasks
 ];
 
@@ -45,10 +45,10 @@ echo $this->renderPage($content, $template, $data);
 
 public function saveAction($id){
 
-    $data=$this->request->post();
+    $saved_data=$this->request->post();
+
+    $saved =$this->mainservice->saveTask($saved_data, $id);
     
-    $added =$this->mainservice->saveTask($data);
-    
-    echo $added;
+    echo $saved;
     }
 }
