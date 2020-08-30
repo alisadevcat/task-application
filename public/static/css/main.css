@@ -8,20 +8,9 @@
 }
 .create_form input,
 .create_form select{
-    /* padding:10px; */
     margin-left:1rem;
 }
-.flex-column input,
-.flex-column select{
-width:60%;
-margin:10px auto;
-}
-.flex-column{
-    display:flex;
-    flex-direction: column;
-    justify-content: space-between;
-    margin-bottom: 15px;
-}
+
 .page{
     font-size:15px;
     padding-left:20px;
@@ -74,7 +63,17 @@ background-color: white;
 padding:20px 10px;
 width: 17%;
 }
-
+.flex-column input,
+.flex-column select{
+width:60%;
+margin:10px auto;
+}
+.flex-column{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
 div.form_window input,
 div.form_window_reg input
 {

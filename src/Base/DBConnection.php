@@ -2,34 +2,33 @@
 
 namespace BeeJee\Web\Base;
 use PDO;
+class DBConnection{
+private $server = 'localhost';
+// $port = 'port', если используется не порт по умолчанию
+private $username = 'alisa_web';
+private $pwd = 'root_web2020';
+private $db_name = 'test_project';
+private $options = [
+    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+];
 
-class DBConnection
-{
-    private $server = 'localhost';
-    // $port = 'port', если используется не порт по умолчанию
-    private $username = 'alisa_web';
-    private $pwd = 'root_web2020';
-    private $db_name = 'test_project';
-    private $options = [
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
-    ];
- 
-    private static $dbConnection;
-    
-    private function __construct(){}
+private static $dbConnection;
 
-    public static function getInstance(){
-        if (self::$dbConnection == null){
-            self::$dbConnection = new DBConnection();
-        }
-        return self::$dbConnection;
+private function __construct(){}
+
+public static function getInstance(){
+    if (self::$dbConnection == null){
+        self::$dbConnection = new DBConnection();
     }
+    return self::$dbConnection;
+}
 
-    public function getConnection(){
-        return $this->dbConnection =
-            new PDO("mysql:host=$this->server;dbname=$this->db_name",
-                $this->username, $this->pwd, $this->options);
-    }
+public function getConnection(){
+    return $this->dbConnection =
+        new PDO("mysql:host=$this->server;dbname=$this->db_name",
+            $this->username, $this->pwd, $this->options);
+}
+
 
     public function queryAll($sql){
         $statement = $this->dbConnection->query($sql);

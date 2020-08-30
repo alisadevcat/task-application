@@ -10,7 +10,7 @@
   <span>/</span>
   <a href ="/sort/name/nameDesc"data-id="nameDesc"class ="button">От Я до А</a>
   <strong>Email</strong>
-  <a href="/sort/email/emailAsc" data-id="emailAsc"class ="button">А до Я/</a>
+  <a href="/sort/email/emailAsc" data-id="emailAsc"class ="button">А до Я</a>
   <span>/</span>
   <a href="/sort/email/emailDesc" data-id="emailDesc"class ="button">От Я до А</a>
   <strong>Статусу</strong>

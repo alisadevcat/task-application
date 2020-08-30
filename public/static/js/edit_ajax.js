@@ -22,18 +22,14 @@ edit_form.addEventListener('submit', async(event)=>{
         });
         let answer = await response.text();
         console.log("ответ сервера " + answer);
-        responseHandler(answer);
+        if (answer === TASK_SAVED){
+            setTimeout("window.location.replace('/')" , 3000);
+            result.innerHTML = TASK_SAVED;
+        } if(answer === TASK_UNSAVED){
+        result.innerHTML = TASK_UNSAVED ;
+        }
     }catch (error) {
         console.log("ошибка", error);
     }
 });
 
-function responseHandler(answer){
-    if (answer === TASK_SAVED){
-        result.innerHTML = TASK_SAVED;
-        setTimeout("window.location.replace('/')" , 3000); 
-    }if(answer === TASK_UNSAVED){
-    result.innerHTML = TASK_UNSAVED ;
-    }
-    
-    };

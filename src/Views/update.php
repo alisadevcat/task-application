@@ -1,5 +1,4 @@
 <div class="edit_form">
-    <h2>Изменение задачи</h2>
 
 <form name="editForm" data-id ="<?echo $task['id']?>" method="POST" class="flex-column">
       
@@ -12,10 +11,12 @@
     <option value="Выполнена">Выполнена</option>
     <option value="Не выполнена">Не выполнена</option>
 </select>
-      <?endforeach;?>
+<?endforeach;?>
 <input type ="submit" value="Сохранить задачу">
 <span id="for_result"></span>
+
 </form>
+
 </div>
 
 <script src="/static/js/edit_ajax.js"></script>

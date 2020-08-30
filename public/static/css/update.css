@@ -1,12 +1,8 @@
 .img_task{
     position:relative;
 }
-div.edit_form{
-    position:fixed;
-    top:40%;
-    left:40%;
-    background-color:pink;
-    border:1px solid black;
+.edit_form{
+    margin-top:20px;
 }
 .flex-column{
     display:flex;
