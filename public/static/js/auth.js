@@ -32,17 +32,15 @@ auth_form.addEventListener('submit', async(event)=>{
 });
 
 
-
 function responseHandler(answer){
-    if(answer === AUTH_SUCCESS){
-      auth_result.innerHTML = AUTH_SUCCESS;
-      setTimeout("window.location.replace('/')" , 3000); 
-    }
     if(answer === NAME_ERROR){
         auth_email.innerHTML= NAME_ERROR;
     }
     if(answer === AUTH_PWD_ERROR){
         auth_password.innerHTML = AUTH_PWD_ERROR;
+    }if(answer === AUTH_SUCCESS){
+            auth_result.innerHTML = AUTH_SUCCESS;
+            setTimeout("window.location.replace('/')" , 2000); 
     }
     } 
 
@@ -76,6 +74,6 @@ span_email.innerHTML= USER_EXISTS;
 reg_result.innerHTML= INSERT_FAIL;
 }if(answer === REG_SUCCESS){
 reg_result.innerHTML= REG_SUCCESS;
-window.location.replace('/');
+setTimeout("window.location.replace('/')" , 2000);
 }                   
 } 

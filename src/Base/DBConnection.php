@@ -3,11 +3,10 @@
 namespace BeeJee\Web\Base;
 use PDO;
 class DBConnection{
-private $server = 'localhost';
-// $port = 'port', если используется не порт по умолчанию
-private $username = 'alisa_web';
-private $pwd = 'root_web2020';
-private $db_name = 'test_project';
+    private $server = 'test-task5.zzz.com.ua';
+    private $username = 'alisaweb1';
+    private $pwd = 'Root_web2020';
+    private $db_name = 'test_domen';
 private $options = [
     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
 ];
@@ -52,6 +51,6 @@ public function getConnection(){
 
     public function executeSql($sql, $params){
         $statement = $this->dbConnection->prepare($sql);
-        return $statement->execute($params);
+        $statement->execute($params);
     }
 }

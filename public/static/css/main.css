@@ -1,3 +1,7 @@
+@import "global.css";
+.header-container{
+    margin:20px 0;
+}
 .create_form{
     width:50%;
     border:1px solid black;
@@ -10,7 +14,6 @@
 .create_form select{
     margin-left:1rem;
 }
-
 .page{
     font-size:15px;
     padding-left:20px;
@@ -48,8 +51,8 @@ margin-right:20px;
 text-decoration :none;
 }
 
-.active{
-    color:white;
+a{
+color:blue;
 }
 
 .shown{
@@ -57,35 +60,48 @@ display:block;
 position:absolute;
 top:40%;
 left:40%;
-border:1px solid black;
+border:1px solid white;
 border-radius:10px;
 background-color: white;
-padding:20px 10px;
 width: 17%;
+padding:10px; 
+text-align: center;
 }
+
+div.form_window input,
+div.form_window_reg input
+{   padding:10px;
+    margin-top:1rem;
+}
+
 .flex-column input,
 .flex-column select{
-width:60%;
+width:70%;
 margin:10px auto;
 }
 .flex-column{
     display:flex;
     flex-direction: column;
     justify-content: space-between;
-    margin-bottom: 15px;
+    margin-bottom: 1rem;
 }
-div.form_window input,
-div.form_window_reg input
-{
-    width:80%;
-    text-align: center;
-    padding: 15px 10px; 
-    margin:1rem 0;
+.block{
+display:block;
 }
 .close_modal_reg,
 .close_modal{
     position: absolute;
-    right:5px;
-    top:5px;
+    right:5%;
+    top:3%;
     cursor: pointer;
+}
+.edit_form{
+    display:flex;
+    flex-direction:row;
+    justify-content: center;
+    margin:20px 0;
+}
+.edit-container{
+    padding:30px 0;
+    margin-bottom:2rem;
 }

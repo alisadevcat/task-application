@@ -36,7 +36,6 @@ $template ='template.php';
 $content='update.php';
 $data = [
     'page_title'=>"Изменение задачи",
-    'main'=>'update',
     'tasks'=>$tasks
 ];
 
@@ -44,11 +43,14 @@ echo $this->renderPage($content, $template, $data);
 }
 
 public function saveAction($id){
-
+    
     $saved_data=$this->request->post();
 
     $saved =$this->mainservice->saveTask($saved_data, $id);
-    
-    echo $saved;
+    header('Content-Type: text/plain');
+    if ($saved ==="1"){
+        echo "Задача сохранена";
+    }if ($saved ==="0")
+    echo "Задача не сохранена";
     }
 }

@@ -29,13 +29,14 @@ function disappearFunc(){
     event.preventDefault();
     window_form.classList.remove('shown');
     window_form.classList.add('none');
-    
 }
 
 let close_modal_reg = document.querySelector('.close_modal_reg');
 close_modal_reg.addEventListener('click', disappearReg);
+
 function disappearReg(){
+    event.preventDefault();
     window_reg.classList.remove('none');
     window_reg.classList.add('shown');
-    window.location.href="/";
+    window.location.href="http://test-task5.zzz.com.ua/";
 }

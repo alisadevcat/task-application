@@ -21,7 +21,6 @@ $template ='template.php';
 $content='main.php';
 $data = [
     'page_title'=>"Главная",
-    'main'=>'main',
     'number'=>$number,
     'alltasks'=>$alltasks
 ];

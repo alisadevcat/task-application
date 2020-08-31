@@ -40,7 +40,7 @@
       <td><?echo $task['textarea']?></td>
       <td class="task__item__status"><?echo $task['status']?></td>
       <? if($_SESSION['admin'] === true)
-    echo "<td><a href=\"/tasks/edit/{$task['id']}\ class=\"change_task\">Изменить задачу</a></td>";
+    echo "<td><a href=\"/tasks/edit/{$task['id']}\">Изменить задачу</a></td>";
     ?>
     </tr>
    <?endforeach?>
@@ -74,5 +74,5 @@ for($i = 1; $i<=$number; $i++){
 
 
 </div>
-<script src="/static/js/task_ajax.js"></script>
+<script src="../../static/js/task_ajax.js"></script>
 

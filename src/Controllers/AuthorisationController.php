@@ -21,6 +21,7 @@ $result =$this->accountService->authUser($auth_data);
 if ($result === AccountService::AUTH_SUCCESS){
     $_SESSION['admin'] = true;
 }
+header('Content-Type: text/plain');
 echo $result;
 
 }
