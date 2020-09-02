@@ -28,7 +28,7 @@
             <span class="auth_email"></span>
             <input required type="password"name ="password" placeholder ="Ваш пароль">
             <input required type="submit" value="Войти"class="button">
-            <span class="auth_password"></span>
+            <span class="auth_password block"></span>
             <span class="auth_result block"></span>
         </form>
     </div>
