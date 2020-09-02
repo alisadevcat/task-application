@@ -43,14 +43,24 @@ echo $this->renderPage($content, $template, $data);
 }
 
 public function saveAction($id){
-    
-    $saved_data=$this->request->post();
-    $saved =$this->mainservice->saveTask($saved_data, $id);
-   if ($saved !== true){
+    $data=$this->request->post();
+    $saved_data=$this->mainservice->getTasksById($id);
+    $result =$this->mainservice->saveTask($data, $id);
+    $updatedData =$this->mainservice->getAddited($data, $id);
+    var_dump($saved_data[0]['name']);
+    var_dump($updatedData[0]['name']);
+   if ($result !== true){
+       if(
+        ($updatedData[0]['name']!== $saved_data[0]['name'])||
+       ($updatedData[0]['email']!== $saved_data[0]['email']) ||
+       ($updatedData[0]['textarea']!== $saved_data[0]['textarea'])||
+       ($updatedData[0]['status']!==$saved_data[0]['status'])){
         $_SESSION['edit'] = true;
         $_SESSION['id_edit'] = $id;
+       }
     }
     header('Content-Type: text/plain');
-    echo $saved;
+    echo $result;
 }
+
 }

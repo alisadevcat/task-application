@@ -99,26 +99,14 @@ public function showSort($id, $page) {
                         return $this->dbConnection->executeSql($sql, $params);
                         }
 
-                public function getAddited($saved_data, $id){
-                $sql = "UPDATE tasks SET name = :name, email = :email, textarea = :textarea , status= :status where id = :id";
-                $params =[
-                'name' => trim($saved_data['name']),
-                'email'=> trim( $saved_data['email']),
-                'textarea'=> trim($saved_data['textarea']),
-                'status' => trim($saved_data['status'][0]),
-                'id'=>$id
-                ];
-                                
-                $dbConnection = $this->dbConnection->getConnection();
-                $this->dbConnection->executeSql($sql, $params);
-
-                $sqlS = "SELECT name, email,textarea, status FROM tasks where id = :id";
-                $paramsS =['id'=> $id];
-
-                $dbConnection = $this->dbConnection->getConnection();
-                return $this->dbConnection->execute($sqlS, $paramsS, true);
-                        }
-
+        public function getAddited($saved_data, $id){
+                if ($this->saveTask($saved_data, $id)!==true){
+                   return $this->getTasksById($id);
+                }
+        }
+                public function getData($data){
+                return $data;
+        }
         public function getTasksById($id){
         $sql ='SELECT * FROM tasks where id =:id;';
         $params =['id'=> $id];

@@ -20,7 +20,7 @@ edit_form.addEventListener('submit', async(event)=>{
             result.innerHTML = TASK_UNSAVED;
         }else{
         result.innerHTML = TASK_SAVED;
-        setTimeout("window.location.replace('/')" , 3000);
+        setTimeout("window.location.replace('/')" , 5000);
         }
     }catch (error) {
         console.log("ошибка", error);
