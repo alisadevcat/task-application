@@ -29,6 +29,7 @@
       <th scope="col">Статус</th>
       <? if($_SESSION['admin'] === true)
     echo "<th>Изменить</th>";
+    echo"<th>Статус изменений</th>";
     ?>
     </tr>
   </thead>
@@ -42,6 +43,8 @@
       <? if($_SESSION['admin'] === true)
     echo "<td><a href=\"/tasks/edit/{$task['id']}\">Изменить задачу</a></td>";
     ?>
+    <?if (($_SESSION['admin'] === true) && ($_SESSION['edit'] === true) && ($_SESSION['id_edit'] === $task['id']))
+    echo "<td>Отредактирована</td>";?>
     </tr>
    <?endforeach?>
   </tbody>

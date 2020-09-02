@@ -4,8 +4,8 @@ let id = edit_form.dataset.id;
 console.log(id);
 let result = document.querySelector("#for_result");
 
-const TASK_SAVED ="Задача не сохранена";
-const TASK_UNSAVED ="Задача сохранена";
+const TASK_UNSAVED ="Задача не сохранена";
+const TASK_SAVED ="Задача сохранена";
 
 edit_form.addEventListener('submit', async(event)=>{
     event.preventDefault();
@@ -17,10 +17,10 @@ edit_form.addEventListener('submit', async(event)=>{
         let answer = await response.text();
         console.log("ответ сервера " + answer);
         if (answer === true){
-            result.innerHTML = TASK_SAVED;
+            result.innerHTML = TASK_UNSAVED;
         }else{
-        result.innerHTML = TASK_UNSAVED ;
-        setTimeout("window.location.replace('/')" , 2000);
+        result.innerHTML = TASK_SAVED;
+        setTimeout("window.location.replace('/')" , 3000);
         }
     }catch (error) {
         console.log("ошибка", error);

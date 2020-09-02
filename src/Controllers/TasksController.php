@@ -45,12 +45,12 @@ echo $this->renderPage($content, $template, $data);
 public function saveAction($id){
     
     $saved_data=$this->request->post();
-
     $saved =$this->mainservice->saveTask($saved_data, $id);
-    header('Content-Type: text/plain');
-    if ($saved ==="1"){
-        echo "Задача сохранена";
-    }if ($saved ==="0")
-    echo "Задача не сохранена";
+   if ($saved !== true){
+        $_SESSION['edit'] = true;
+        $_SESSION['id_edit'] = $id;
     }
+    header('Content-Type: text/plain');
+    echo $saved;
+}
 }
